@@ -1,28 +1,23 @@
 <?php
-require_once "../src/Config/bootstrap.php"
-?>
 
-<!DOCTYPE html>
-<html lang="en">
+require __DIR__ . "/../src/Database.php";
+require __DIR__ . "/../src/Router.php";
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello, world</title>
-</head>
+require __DIR__ . "/../src/Controller/AuthController.php";
 
-<body>
-    <h1>Hello, world</h1>
-    <p>
-        <?php
-        $conn = $db->getConnection();
+$db = new Database(
+    getenv("DB_HOST") ?: "db",
+    getenv("DB_NAME") ?: "submarine",
+    getenv("DB_USER") ?: "mysql",
+    getenv("DB_PASSWORD") ?: "mysql",
+);
 
-        $stmt = $conn->query("SELECT NOW() AS date");
-        $row = $stmt->fetch();
+$router = new Router();
 
-        echo "Data e hora atuais: " . $row["date"];
-        ?>
-    </p>
-</body>
+$router->get("/", "AuthController@index");
 
-</html>
+$router->get("/login", "AuthController@login");
+
+$router->get("/register", "AuthController@register");
+
+$router->dispatch();
