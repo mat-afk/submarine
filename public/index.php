@@ -11,13 +11,14 @@ $db = new Database(
     getenv("DB_USER") ?: "mysql",
     getenv("DB_PASSWORD") ?: "mysql",
 );
+$pdo = $db->getConnection();
+
+$authController = new AuthController($pdo);
 
 $router = new Router();
 
-$router->get("/", "AuthController@index");
-
-$router->get("/login", "AuthController@login");
-
-$router->get("/register", "AuthController@register");
+$router->get("/", $authController, "index");
+$router->get("/login", $authController, "login");
+$router->get("/register", $authController, "register");
 
 $router->dispatch();

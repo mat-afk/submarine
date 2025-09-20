@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS books(
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
-    published_at DATE DEFAULT CURDATE()
+    published_at DATE DEFAULT (CURRENT_DATE())
 );
 
 CREATE TABLE IF NOT EXISTS authorship(
@@ -41,5 +41,5 @@ CREATE TABLE IF NOT EXISTS ratings(
     FOREIGN KEY (book_id) REFERENCES books(id),
     FOREIGN KEY (user_id) REFERENCES users(id),
 
-    CHECK(stars >= 1 AND stars <= 5),
+    CHECK(stars >= 1 AND stars <= 5)
 );

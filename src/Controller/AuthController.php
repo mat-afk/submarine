@@ -5,6 +5,8 @@ require __DIR__ . "/../View.php";
 class AuthController
 {
 
+    public function __construct(private PDO $pdo) {}
+
     public function index()
     {
         View::render("index");

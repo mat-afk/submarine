@@ -5,14 +5,14 @@ class Router
 
     private $routes = [];
 
-    public function get(string $path, string $action)
+    public function get(string $path, $controller, string $action)
     {
-        $this->routes["GET"][$path] = $action;
+        $this->routes["GET"][$path] = [$controller, $action];
     }
 
-    public function post(string $path, string $action)
+    public function post(string $path, $controller, string $action)
     {
-        $this->routes["POST"][$path] = $action;
+        $this->routes["POST"][$path] = [$controller, $action];
     }
 
     public function dispatch()
@@ -26,8 +26,7 @@ class Router
             return;
         }
 
-        [$controller, $action] = explode("@", $this->routes[$method][$path]);
-        $controller = new $controller();
+        [$controller, $action] = $this->routes[$method][$path];
 
         call_user_func([$controller, $action]);
     }
