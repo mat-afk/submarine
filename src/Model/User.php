@@ -2,6 +2,8 @@
 
 class User extends Model
 {
+    protected static string $table = 'users';
+
     private string $name;
     private string $email;
     private string $password;
@@ -11,7 +13,7 @@ class User extends Model
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -21,7 +23,7 @@ class User extends Model
         return $this->email;
     }
 
-    public function setEmail(string $email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -31,7 +33,7 @@ class User extends Model
         return $this->password == password_hash($password, PASSWORD_BCRYPT);
     }
 
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         $this->password = password_hash($password, PASSWORD_BCRYPT);
     }
