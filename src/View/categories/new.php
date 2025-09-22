@@ -1,22 +1,20 @@
 <?php
 $pageTitle = "Criar categoria";
 
-include __DIR__ . "/../Layout/header.php";
+include __DIR__ . "/../Layout/default.php";
 ?>
 
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3">Criar nova categoria</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3">Criar nova categoria</h1>
 
-        <a href="/categories" class="btn btn-secondary">Voltar para a lista</a>
+    <a href="/categories" class="btn btn-secondary">Voltar para a lista</a>
+</div>
+
+<form action="#" method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="name" name="name" required>
     </div>
 
-    <form action="#" method="POST">
-        <div class="mb-3">
-            <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-
-        <button type="submit" class="btn btn-success me-2">Salvar</button>
-    </form>
-</div>
+    <button type="submit" class="btn btn-success me-2">Salvar</button>
+</form>

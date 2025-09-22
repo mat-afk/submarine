@@ -17,4 +17,10 @@
             integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
             crossorigin="anonymous"
     >
+
+    <style>
+        body {
+            height: 100vh;
+        }
+    </style>
 </head>
