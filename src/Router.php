@@ -4,19 +4,25 @@ class Router
 {
     private static array $routes = [];
 
-    private static function route(string $method, string $path, $controller, string $action): void
+    private static function addRoute(string $method, string $path, $controller, string $action): void
     {
         static::$routes[$method][$path] = [$controller, $action];
     }
 
+    public static function route(string $path, $controller, string $action): void
+    {
+        static::addRoute("GET", $path, $controller, $action);
+        static::addRoute("POST", $path, $controller, $action);
+    }
+
     public static function get(string $path, $controller, string $action): void
     {
-        static::route("GET", $path, $controller, $action);
+        static::addRoute("GET", $path, $controller, $action);
     }
 
     public static function post(string $path, $controller, string $action): void
     {
-        static::route("POST", $path, $controller, $action);
+        static::addRoute("POST", $path, $controller, $action);
     }
 
     public static function dispatch(string $method, string $uri): void
@@ -28,7 +34,7 @@ class Router
             echo "
                 <h1>Página não encontrada.</h1>
                 <p>
-                O servidor não conseguiu encontrar nenhum página associada a essa URL. <a href="/">Voltar para /</a>
+                O servidor não conseguiu encontrar nenhum página associada a essa URL. <a href='/'>Voltar para /</a>
                 </p>
             ";
             return;

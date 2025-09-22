@@ -27,9 +27,10 @@ abstract class Model
 
         $joined_columns = implode(", ", $columns);
         $joined_values = implode(", ", array_keys($values));
+        $table = static::$table;
 
         if ($this->id === null) {
-            $sql = "INSERT INTO {$this->table} ($joined_columns) VALUES ($joined_values)";
+            $sql = "INSERT INTO $table ($joined_columns) VALUES ($joined_values)";
 
             $stmt = $this->pdo->prepare($sql);
             $ok = $stmt->execute($values);
@@ -44,7 +45,7 @@ abstract class Model
         $set = implode(", ", array_map(fn($column) => "$column = :$column", $columns));
         $values[":id"] = $this->id;
 
-        $sql = "UPDATE {$this->table} SET $set WHERE id = :id";
+        $sql = "UPDATE $table SET $set WHERE id = :id";
 
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute($values);
@@ -83,7 +84,8 @@ abstract class Model
     {
         if ($this->id === null) return false;
 
-        $stmt = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = :id");
+        $table = static::$table;
+        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
 
         return $stmt->execute([":id" => $this->id]);
     }

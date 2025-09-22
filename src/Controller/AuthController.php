@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . "/../View.php";
-require __DIR__ . "/../Controller.php";
+require_once __DIR__ . "/../View.php";
+require_once __DIR__ . "/../Controller.php";
 
 class AuthController extends Controller
 {
@@ -13,8 +13,10 @@ class AuthController extends Controller
 
     public function login(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            header("Location: /", true, 302);
+        $method = $_SERVER["REQUEST_METHOD"];
+
+        if ($method === "POST") {
+            header("Location: /");
             exit();
         }
 

@@ -2,7 +2,6 @@
 
 class Database
 {
-
     private PDO $pdo;
 
     public function __construct(string $host, string $db, string $user, string $password)
