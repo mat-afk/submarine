@@ -3,7 +3,7 @@
 class View
 {
 
-    public static function render(string $view, array $data = [])
+    public static function render(string $view, array $data = []): void
     {
         extract($data);
 

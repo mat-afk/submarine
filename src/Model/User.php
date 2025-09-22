@@ -2,7 +2,7 @@
 
 class User extends Model
 {
-    protected static string $table = 'users';
+    protected static string $table = "users";
 
     private string $name;
     private string $email;

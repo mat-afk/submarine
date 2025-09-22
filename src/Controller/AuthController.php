@@ -1,10 +1,10 @@
 <?php
 
 require __DIR__ . "/../View.php";
+require __DIR__ . "/../Controller.php";
 
-class AuthController
+class AuthController extends Controller
 {
-    public function __construct(private PDO $pdo) {}
 
     public function index(): void
     {
@@ -13,6 +13,11 @@ class AuthController
 
     public function login(): void
     {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            header("Location: /", true, 302);
+            exit();
+        }
+
         View::render("login");
     }
 

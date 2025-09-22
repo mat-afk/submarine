@@ -15,10 +15,12 @@ $pdo = $db->getConnection();
 
 $authController = new AuthController($pdo);
 
-$router = new Router();
+Router::get("/", $authController, "index");
 
-$router->get("/", $authController, "index");
-$router->get("/login", $authController, "login");
-$router->get("/register", $authController, "register");
+Router::get("/login", $authController, "login");
+Router::post("/login", $authController, "login");
 
-$router->dispatch();
+Router::get("/register", $authController, "register");
+Router::post("/register", $authController, "register");
+
+Router::dispatch($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"]);

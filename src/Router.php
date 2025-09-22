@@ -2,31 +2,39 @@
 
 class Router
 {
+    private static array $routes = [];
 
-    private $routes = [];
-
-    public function get(string $path, $controller, string $action)
+    private static function route(string $method, string $path, $controller, string $action): void
     {
-        $this->routes["GET"][$path] = [$controller, $action];
+        static::$routes[$method][$path] = [$controller, $action];
     }
 
-    public function post(string $path, $controller, string $action)
+    public static function get(string $path, $controller, string $action): void
     {
-        $this->routes["POST"][$path] = [$controller, $action];
+        static::route("GET", $path, $controller, $action);
     }
 
-    public function dispatch()
+    public static function post(string $path, $controller, string $action): void
     {
-        $method = $_SERVER["REQUEST_METHOD"];
-        $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+        static::route("POST", $path, $controller, $action);
+    }
 
-        if (!isset($this->routes[$method][$path])) {
+    public static function dispatch(string $method, string $uri): void
+    {
+        $path = parse_url($uri, PHP_URL_PATH);
+
+        if (!isset(static::$routes[$method][$path])) {
             http_response_code(404);
-            echo "<h1>Página não encontrada.</h1><p>O servidor não conseguiu encontrar nenhum página associada a essa URL. <a href='/'>Voltar para /</a></p>";
+            echo "
+                <h1>Página não encontrada.</h1>
+                <p>
+                O servidor não conseguiu encontrar nenhum página associada a essa URL. <a href="/">Voltar para /</a>
+                </p>
+            ";
             return;
         }
 
-        [$controller, $action] = $this->routes[$method][$path];
+        [$controller, $action] = static::$routes[$method][$path];
 
         call_user_func([$controller, $action]);
     }

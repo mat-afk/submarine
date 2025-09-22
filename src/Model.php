@@ -1,6 +1,6 @@
 <?php
 
-class Model
+abstract class Model
 {
     protected static string $table;
     protected ?int $id = null;
