@@ -7,9 +7,16 @@ require_once __DIR__ . "/CrudController.php";
 
 class BookController extends CrudController
 {
+    private string $resource = "books";
+
     public function index(): void
     {
-        View::render("books/index");
+        View::render("$this->resource/index");
+    }
+
+    public function show(): void
+    {
+        View::render("$this->resource/show");
     }
 
     public function new(): void
@@ -20,7 +27,7 @@ class BookController extends CrudController
             $this->redirect();
         }
 
-        View::render("books/new");
+        View::render("$this->resource/new");
     }
 
     public function edit(): void
@@ -32,7 +39,7 @@ class BookController extends CrudController
             $this->redirect();
         }
 
-        View::render("books/edit");
+        View::render("$this->resource/edit");
     }
 
     #[NoReturn]
@@ -46,6 +53,6 @@ class BookController extends CrudController
     #[NoReturn]
     private function redirect(): void
     {
-        $this->redirectTo("/books");
+        $this->redirectTo("/$this->resource");
     }
 }

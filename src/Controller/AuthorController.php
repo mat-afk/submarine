@@ -5,9 +5,9 @@ use JetBrains\PhpStorm\NoReturn;
 require_once __DIR__ . "/../View.php";
 require_once __DIR__ . "/CrudController.php";
 
-class CategoryController extends CrudController
+class AuthorController extends CrudController
 {
-    private string $resource = "categories";
+    private string $resource = "authors";
 
     public function index(): void
     {

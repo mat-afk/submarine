@@ -15,6 +15,7 @@ class Router
     public static function resource(string $baseUrl, CrudController $controller): void
     {
         static::get($baseUrl, $controller, "index");
+        static::get("$baseUrl/show", $controller, "show");
         static::route("$baseUrl/new", $controller, "new");
         static::route("$baseUrl/edit", $controller, "edit");
         static::post("$baseUrl/delete", $controller, "delete");
