@@ -5,7 +5,7 @@ include __DIR__ . "/../Layout/default.php";
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Criar nova categoria</h1>
+    <h1 class="h3">Criar categoria</h1>
 
     <a href="/categories" class="btn btn-secondary">Voltar para a lista</a>
 </div>

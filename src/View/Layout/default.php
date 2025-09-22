@@ -19,6 +19,9 @@ include __DIR__ . "/header.php";
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/categories">Categorias</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/ratings">Avaliações</a>
+                        </li>
                     </ul>
                 </div>
             </div>
