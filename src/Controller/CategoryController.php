@@ -5,11 +5,11 @@ use JetBrains\PhpStorm\NoReturn;
 require_once __DIR__ . "/../View.php";
 require_once __DIR__ . "/CrudController.php";
 
-class BookController extends CrudController
+class CategoryController extends CrudController
 {
     public function index(): void
     {
-        View::render("books/index");
+        View::render("categories/index");
     }
 
     public function new(): void
@@ -20,7 +20,7 @@ class BookController extends CrudController
             $this->redirect();
         }
 
-        View::render("books/new");
+        View::render("categories/new");
     }
 
     public function edit(): void
@@ -32,7 +32,7 @@ class BookController extends CrudController
             $this->redirect();
         }
 
-        View::render("books/edit");
+        View::render("categories/edit");
     }
 
     #[NoReturn]
@@ -46,6 +46,6 @@ class BookController extends CrudController
     #[NoReturn]
     private function redirect(): void
     {
-        $this->redirectTo("/books");
+        $this->redirectTo("/categories");
     }
 }
