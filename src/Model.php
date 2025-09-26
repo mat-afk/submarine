@@ -1,5 +1,9 @@
 <?php
 
+namespace App;
+
+use PDO;
+
 abstract class Model
 {
     protected static string $table;

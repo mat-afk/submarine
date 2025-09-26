@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+
+use App\Model;
+
 class Image extends Model
 {
     protected static string $table = 'images';

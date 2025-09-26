@@ -1,7 +1,9 @@
 <?php
 
-require_once __DIR__ . "/../View.php";
-require_once __DIR__ . "/../Controller.php";
+namespace App\Controller;
+
+use App\Controller;
+use App\View;
 
 class AuthController extends Controller
 {

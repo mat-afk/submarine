@@ -1,13 +1,16 @@
 <?php
 
-require __DIR__ . "/../src/Database.php";
-require __DIR__ . "/../src/Router.php";
+require __DIR__ . "/../src/autoload.php";
 
-require __DIR__ . "/../src/Controller/AuthController.php";
-require __DIR__ . "/../src/Controller/BookController.php";
-require __DIR__ . "/../src/Controller/CategoryController.php";
-require __DIR__ . "/../src/Controller/AuthorController.php";
-require __DIR__ . "/../src/Controller/RatingController.php";
+use App\Database;
+
+use App\Controller\AuthController;
+use App\Controller\BookController;
+use App\Controller\CategoryController;
+use App\Controller\AuthorController;
+use App\Controller\RatingController;
+
+use App\Router;
 
 $db = new Database(
     getenv("DB_HOST") ?: "db",

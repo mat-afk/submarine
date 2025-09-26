@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . "/../src/Controller.php";
-require_once __DIR__ . "/../src/Controller/CrudController.php";
+namespace App;
+
+use App\Controller\CrudController;
 
 class Router
 {
@@ -46,7 +47,7 @@ class Router
             echo "
                 <h1>Página não encontrada.</h1>
                 <p>
-                O servidor não conseguiu encontrar nenhum página associada a essa URL. <a href='/'>Voltar para /</a>
+                O servidor não conseguiu encontrar nenhuma página associada a essa URL. <a href='/'>Voltar para /</a>
                 </p>
             ";
             return;

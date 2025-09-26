@@ -1,9 +1,9 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
+namespace App\Controller;
 
-require_once __DIR__ . "/../View.php";
-require_once __DIR__ . "/CrudController.php";
+use JetBrains\PhpStorm\NoReturn;
+use App\View;
 
 class AuthorController extends CrudController
 {
