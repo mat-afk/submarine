@@ -9,13 +9,7 @@ class Router
     private static array $routes = [];
     private static array $currentGroupMiddlewares = [];
 
-    private static function addRoute(
-        string $method,
-        string $path,
-        Controller $controller,
-        string $action,
-        array $middlewares = []
-    ): void
+    private static function addRoute(string $method, string $path, Controller $controller, string $action, array $middlewares = []): void
     {
         $middlewares = array_merge(static::$currentGroupMiddlewares, $middlewares);
 

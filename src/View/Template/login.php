@@ -17,11 +17,11 @@ include __DIR__ . "/../Layout/auth-form.php";
 
 <h3 class="title is-3 has-text-centered mb-5">Login</h3>
 
-<form action="/login" method="POST">
+<form action="#" method="POST">
     <div class="field">
-        <label for="email" class="label">Email</label>
+        <label for="email" class="label">E-mail</label>
         <div class="control has-icons-left">
-            <input type="email" name="email" id="email" class="input" placeholder="seu-email@exemplo.com" required>
+            <input type="email" name="email" id="email" class="input" placeholder="exemplo@email.com" required>
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
             </span>
@@ -31,7 +31,7 @@ include __DIR__ . "/../Layout/auth-form.php";
     <div class="field">
         <label for="password" class="label">Senha</label>
         <div class="control has-icons-left">
-            <input type="password" name="password" id="password" class="input" required>
+            <input type="password" name="password" id="password" class="input" placeholder="******" required>
             <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
             </span>
