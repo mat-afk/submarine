@@ -1,26 +1,13 @@
 <?php
 $pageTitle = "Listagem de categorias";
+$listTitle = "Categorias";
+$button = [
+        "label" => "Nova categoria",
+        "to" => "/categories/new"
+];
 
-include __DIR__ . "/../Layout/default.php";
+include __DIR__ . "/../../Layout/list.php";
 ?>
-
-<div class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <h1 class="title is-3">Categorias</h1>
-        </div>
-    </div>
-    <div class="level-right">
-        <div class="level-item">
-            <a class="button is-success" href="/categories/new">
-                <span class="icon">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span>Nova categoria</span>
-            </a>
-        </div>
-    </div>
-</div>
 
 <div class="table-container">
     <table class="table is-fullwidth is-striped is-hoverable">

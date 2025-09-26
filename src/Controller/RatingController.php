@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use JetBrains\PhpStorm\NoReturn;
 use App\View;
 
 class RatingController extends CrudController
@@ -14,7 +13,6 @@ class RatingController extends CrudController
         View::render("$this->resource/index");
     }
 
-    #[NoReturn]
     public function show(): void
     {
         $this->redirect();
@@ -40,13 +38,11 @@ class RatingController extends CrudController
         View::render("$this->resource/edit");
     }
 
-    #[NoReturn]
     public function delete(): void
     {
         $this->redirect();
     }
 
-    #[NoReturn]
     private function redirect(): void
     {
         $this->redirectTo("/$this->resource");

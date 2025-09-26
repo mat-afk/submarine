@@ -1,26 +1,13 @@
 <?php
 $pageTitle = "Listagem de livros";
+$listTitle = "Livros";
+$button = [
+    "label" => "Novo livro",
+    "to" => "/books/new"
+];
 
-include __DIR__ . "/../Layout/default.php";
+include __DIR__ . "/../../Layout/list.php";
 ?>
-
-<div class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <h1 class="title is-3">Livros</h1>
-        </div>
-    </div>
-    <div class="level-right">
-        <div class="level-item">
-            <a class="button is-success" href="/books/new">
-                <span class="icon">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span>Novo Livro</span>
-            </a>
-        </div>
-    </div>
-</div>
 
 <div class="card mb-5">
     <div class="card-content">

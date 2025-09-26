@@ -3,7 +3,7 @@ include __DIR__ . "/header.php";
 ?>
 
 <body>
-    <div class="container is-fullhd">
+    <div class="container">
         <div class="columns is-gapless">
             <div class="column">
                 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">

@@ -1,35 +1,25 @@
 <?php
-$pageTitle = "Cadastro";
+$pageTitle = "Login";
 
-include __DIR__ . "/Layout/auth_form.php";
+include __DIR__ . "/../Layout/auth-form.php";
 ?>
 
 <div class="tabs is-centered">
     <ul>
-        <li>
+        <li class="is-active">
             <a href="/login">Login</a>
         </li>
-        <li class="is-active">
+        <li>
             <a href="/register">Cadastro</a>
         </li>
     </ul>
 </div>
 
-<h3 class="title is-3 has-text-centered mb-5">Cadastro</h3>
+<h3 class="title is-3 has-text-centered mb-5">Login</h3>
 
-<form action="/register" method="POST">
+<form action="/login" method="POST">
     <div class="field">
-        <label for="name" class="label">Nome</label>
-        <div class="control has-icons-left">
-            <input type="text" name="name" id="name" class="input" placeholder="João da Silva" required>
-            <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-            </span>
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="email" class="label">E-mail</label>
+        <label for="email" class="label">Email</label>
         <div class="control has-icons-left">
             <input type="email" name="email" id="email" class="input" placeholder="seu-email@exemplo.com" required>
             <span class="icon is-small is-left">
@@ -46,14 +36,11 @@ include __DIR__ . "/Layout/auth_form.php";
                 <i class="fas fa-lock"></i>
             </span>
         </div>
-        <p class="help">
-            A sua senha deve ter, pelo menos, 6 caracteres.
-        </p>
     </div>
 
     <div class="field">
         <div class="control">
-            <button type="submit" class="button is-primary is-fullwidth">Cadastrar</button>
+            <button type="submit" class="button is-primary is-fullwidth">Entrar</button>
         </div>
     </div>
 </form>

@@ -10,7 +10,14 @@ class AuthController extends Controller
 
     public function index(): void
     {
-        View::render("index");
+        $location = "/books";
+
+        if (!isset($_SESSION["user"])) {
+            $location = "/login";
+        }
+
+        header("location: $location");
+        exit();
     }
 
     public function login(): void

@@ -1,26 +1,13 @@
 <?php
 $pageTitle = "Listagem de avaliações";
+$listTitle = "Avaliações";
+$button = [
+        "label" => "Avaliar livro",
+        "to" => "/ratings/new"
+];
 
-include __DIR__ . "/../Layout/default.php";
+include __DIR__ . "/../../Layout/list.php";
 ?>
-
-<div class="level">
-    <div class="level-left">
-        <div class="level-item">
-            <h1 class="title is-3">Avaliações</h1>
-        </div>
-    </div>
-    <div class="level-right">
-        <div class="level-item">
-            <a class="button is-success" href="/ratings/new">
-                <span class="icon">
-                    <i class="fas fa-star"></i>
-                </span>
-                <span>Avaliar livro</span>
-            </a>
-        </div>
-    </div>
-</div>
 
 <div class="table-container">
     <table class="table is-fullwidth is-striped is-hoverable">

@@ -5,7 +5,7 @@ $form = [
     "name" => isset($state) ? $state["name"] : ""
 ];
 
-include __DIR__ . "/../Layout/common_form.php";
+include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
 <form action="#" method="POST">

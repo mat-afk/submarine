@@ -14,7 +14,7 @@ $form = [
     "comment" => isset($state) ? $state["comment"] : "",
 ];
 
-include __DIR__ . "/../Layout/common_form.php";
+include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
 <form action="#" method="POST">

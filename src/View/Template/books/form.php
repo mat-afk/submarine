@@ -31,7 +31,7 @@ $form = [
     "publish_date" => isset($state) ? $state["publish_date"] : date("Y-m-d"),
 ];
 
-include __DIR__ . "/../Layout/common_form.php";
+include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
 <form action="#" method="POST">

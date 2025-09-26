@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use JetBrains\PhpStorm\NoReturn;
 use App\View;
 
 class BookController extends CrudController
@@ -42,7 +41,6 @@ class BookController extends CrudController
         View::render("$this->resource/edit");
     }
 
-    #[NoReturn]
     public function delete(): void
     {
         $id = $_REQUEST["id"];
@@ -50,7 +48,6 @@ class BookController extends CrudController
         $this->redirect();
     }
 
-    #[NoReturn]
     private function redirect(): void
     {
         $this->redirectTo("/$this->resource");
