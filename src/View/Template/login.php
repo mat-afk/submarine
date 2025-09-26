@@ -31,7 +31,7 @@ include __DIR__ . "/../Layout/auth-form.php";
     <div class="field">
         <label for="password" class="label">Senha</label>
         <div class="control has-icons-left">
-            <input type="password" name="password" id="password" class="input" placeholder="******" required>
+            <input type="password" name="password" id="password" class="input" placeholder="******" autocomplete required>
             <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
             </span>
