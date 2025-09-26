@@ -55,7 +55,7 @@ include __DIR__ . "/../Layout/default.php";
             </td>
             <td>Sim</td>
             <td>
-                <?php if (false): ?>
+                <?php if (true): ?>
                     <a href="/ratings/edit?id=1" class="button is-primary is-small">
                             <span class="icon">
                                 <i class="fas fa-edit"></i>
