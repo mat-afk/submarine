@@ -2,14 +2,14 @@
 
 <style>
     body {
-        background-color: #f8f9fa;
+        background-color: hsl(0, 0%, 98%);
     }
 
     .form-container {
         max-width: 650px;
         margin: 50px auto;
         padding: 20px;
-        background-color: #fff;
+        background-color: white;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }

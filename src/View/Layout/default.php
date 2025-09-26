@@ -3,28 +3,33 @@ include __DIR__ . "/header.php";
 ?>
 
 <body>
-<div class="container h-100">
-    <div class="border-start border-end h-100">
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/books">Submarine</a>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/books">Livros</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/authors">Autores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/categories">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/ratings">Avaliações</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <div class="container is-fullhd">
+        <div class="columns is-gapless">
+            <div class="column">
+                <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item has-text-white has-text-weight-bold is-size-4" href="/books">
+                            Submarine
+                        </a>
+                    </div>
 
-        <div class="p-4">
+                    <div class="navbar-menu">
+                        <div class="navbar-start">
+                            <a class="navbar-item has-text-white" href="/books">
+                                Livros
+                            </a>
+                            <a class="navbar-item has-text-white" href="/authors">
+                                Autores
+                            </a>
+                            <a class="navbar-item has-text-white" href="/categories">
+                                Categorias
+                            </a>
+                            <a class="navbar-item has-text-white" href="/ratings">
+                                Avaliações
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="py-5">
+                    <div class="container">

@@ -4,17 +4,44 @@ $pageTitle = "Editar categoria";
 include __DIR__ . "/../Layout/default.php";
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Editar categoria</h1>
-
-    <a href="/categories" class="btn btn-secondary">Voltar para a lista</a>
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title is-3">Editar categoria</h1>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="/categories" class="button is-light">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>Voltar para a lista</span>
+            </a>
+        </div>
+    </div>
 </div>
 
-<form action="#" method="POST">
-    <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="name" name="name" required>
-    </div>
+<div class="card">
+    <div class="card-content">
+        <form action="#" method="POST">
+            <div class="field">
+                <label for="name" class="label">Nome</label>
+                <div class="control">
+                    <input type="text" class="input" id="name" name="name" required>
+                </div>
+            </div>
 
-    <button type="submit" class="btn btn-success me-2">Salvar</button>
-</form>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-success">
+                        <span class="icon">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Salvar</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -4,33 +4,66 @@ $pageTitle = "Avaliar livro";
 include __DIR__ . "/../Layout/default.php";
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Avaliar livro</h1>
-
-    <a href="/ratings" class="btn btn-secondary">Voltar para a lista</a>
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title is-3">Avaliar livro</h1>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="/ratings" class="button is-light">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>Voltar para a lista</span>
+            </a>
+        </div>
+    </div>
 </div>
 
-<form action="#" method="POST">
-    <div class="mb-3">
-        <label for="book" class="form-label">Livro</label>
-        <select class="form-select" name="book" id="book">
-            <option selected>Selecione uma opção</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+<div class="card">
+    <div class="card-content">
+        <form action="#" method="POST">
+            <div class="field">
+                <label for="book" class="label">Livro</label>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select name="book" id="book">
+                            <option selected>Selecione uma opção</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
+            <div class="field">
+                <label for="stars" class="label">Estrelas</label>
+                <div class="control">
+                    <input type="number" class="input" id="stars" name="stars" min="1" max="5" step="0.5" required>
+                </div>
+                <p class="help">Avalie de 1 a 5 estrelas</p>
+            </div>
+
+            <div class="field">
+                <label for="comment" class="label">Comentário</label>
+                <div class="control">
+                    <textarea class="textarea" id="comment" name="comment" rows="4" placeholder="Deixe seu comentário sobre o livro..."></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-success">
+                        <span class="icon">
+                            <i class="fas fa-star"></i>
+                        </span>
+                        <span>Salvar</span>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="mb-3">
-        <label for="stars" class="form-label">Estrelas</label>
-        <input type="text" class="form-control" id="stars" name="stars" required>
-    </div>
-
-    <div class="mb-3">
-        <label for="comment" class="form-label">Descrição</label>
-        <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-success me-2">Salvar</button>
-</form>
+</div>

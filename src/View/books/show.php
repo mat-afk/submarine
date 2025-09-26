@@ -4,22 +4,63 @@ $pageTitle = "O Guia do Mochileiro das Galáxias";
 include __DIR__ . "/../Layout/default.php";
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Detalhes do Livro</h1>
-    <div>
-        <a href="/books/edit?id=" class="btn btn-primary me-2">Editar Livro</a>
-        <a href="/books" class="btn btn-secondary">Voltar para a lista</a>
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title is-3">Detalhes do Livro</h1>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <div class="buttons">
+                <a href="/books/edit?id=" class="button is-primary">
+                    <span class="icon">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span>Editar Livro</span>
+                </a>
+                <a href="/books" class="button is-light">
+                    <span class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span>Voltar para a lista</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
-        <h5 class="card-title">O Guia do Mochileiro das Galáxias</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Douglas Adams</h6>
-        <hr>
-        <p><strong>Autor:</strong> Douglas Adams</p>
-        <p><strong>Categoria:</strong> Ficção Científica</p>
-        <p><strong>Data de Publicação:</strong> 12/10/1979</p>
-        <p><strong>Descrição:</strong> Uma hilariante saga espacial que segue as desventuras do terráqueo Arthur Dent e seu amigo Ford Prefect após a destruição da Terra para a construção de uma autoestrada hiperespacial.</p>
+    <div class="card-content">
+        <div class="content">
+            <h2 class="title is-4">O Guia do Mochileiro das Galáxias</h2>
+            <h3 class="subtitle is-6 has-text-grey">Douglas Adams</h3>
+
+            <hr>
+
+            <div class="columns">
+                <div class="column is-half">
+                    <div class="field">
+                        <label class="label">Autor:</label>
+                        <p class="has-text-weight-normal">Douglas Adams</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Categoria:</label>
+                        <p class="has-text-weight-normal">Ficção Científica</p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Data de Publicação:</label>
+                        <p class="has-text-weight-normal">12/10/1979</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Descrição:</label>
+                <p class="has-text-weight-normal">Uma hilariante saga espacial que segue as desventuras do terráqueo Arthur Dent e seu amigo Ford Prefect após a destruição da Terra para a construção de uma autoestrada hiperespacial.</p>
+            </div>
+        </div>
     </div>
 </div>

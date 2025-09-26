@@ -4,27 +4,43 @@ $pageTitle = "Login";
 include __DIR__ . "/Layout/auth_form.php";
 ?>
 
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-        <a class="nav-link active" href="/login">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/register">Cadastro</a>
-    </li>
-</ul>
+<div class="tabs is-centered">
+    <ul>
+        <li class="is-active">
+            <a href="/login">Login</a>
+        </li>
+        <li>
+            <a href="/register">Cadastro</a>
+        </li>
+    </ul>
+</div>
 
-<h3 class="mt-4 mb-3 text-center">Login</h3>
+<h3 class="title is-3 has-text-centered mb-5">Login</h3>
 
 <form action="/login" method="POST">
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="seu-email@exemplo.com" required>
+    <div class="field">
+        <label for="email" class="label">Email</label>
+        <div class="control has-icons-left">
+            <input type="email" name="email" id="email" class="input" placeholder="seu-email@exemplo.com" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" name="password" id="password" class="form-control" required>
+
+    <div class="field">
+        <label for="password" class="label">Senha</label>
+        <div class="control has-icons-left">
+            <input type="password" name="password" id="password" class="input" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </div>
     </div>
-    <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary">Entrar</button>
+
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-primary is-fullwidth">Entrar</button>
+        </div>
     </div>
 </form>

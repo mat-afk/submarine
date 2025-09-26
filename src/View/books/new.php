@@ -4,33 +4,72 @@ $pageTitle = "Adicionar livro";
 include __DIR__ . "/../Layout/default.php";
 ?>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="h3">Adicionar Novo Livro</h1>
-
-    <a href="/books" class="btn btn-secondary">Voltar para a lista</a>
+<div class="level">
+    <div class="level-left">
+        <div class="level-item">
+            <h1 class="title is-3">Adicionar Novo Livro</h1>
+        </div>
+    </div>
+    <div class="level-right">
+        <div class="level-item">
+            <a href="/books" class="button is-light">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>Voltar para a lista</span>
+            </a>
+        </div>
+    </div>
 </div>
 
-<form action="#" method="POST">
-    <div class="mb-3">
-        <label for="title" class="form-label">Título</label>
-        <input type="text" class="form-control" id="title" name="title" required>
-    </div>
-    <div class="mb-3">
-        <label for="description" class="form-label">Descrição</label>
-        <textarea class="form-control" id="description" name="description" rows="4"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="author" class="form-label">Autor</label>
-        <input type="text" class="form-control" id="author" name="author" required>
-    </div>
-    <div class="mb-3">
-        <label for="category" class="form-label">Categoria</label>
-        <input type="text" class="form-control" id="category" name="category" required>
-    </div>
-    <div class="mb-3">
-        <label for="publish_date" class="form-label">Data de Publicação</label>
-        <input type="date" class="form-control" id="publish_date" name="publish_date" required>
-    </div>
+<div class="card">
+    <div class="card-content">
+        <form action="#" method="POST">
+            <div class="field">
+                <label for="title" class="label">Título</label>
+                <div class="control">
+                    <input type="text" class="input" id="title" name="title" required>
+                </div>
+            </div>
 
-    <button type="submit" class="btn btn-success me-2">Salvar</button>
-</form>
+            <div class="field">
+                <label for="description" class="label">Descrição</label>
+                <div class="control">
+                    <textarea class="textarea" id="description" name="description" rows="4"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="author" class="label">Autor</label>
+                <div class="control">
+                    <input type="text" class="input" id="author" name="author" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="category" class="label">Categoria</label>
+                <div class="control">
+                    <input type="text" class="input" id="category" name="category" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="publish_date" class="label">Data de Publicação</label>
+                <div class="control">
+                    <input type="date" class="input" id="publish_date" name="publish_date" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-success">
+                        <span class="icon">
+                            <i class="fas fa-save"></i>
+                        </span>
+                        <span>Salvar</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
