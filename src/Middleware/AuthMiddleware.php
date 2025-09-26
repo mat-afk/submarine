@@ -9,11 +9,12 @@ class AuthMiddleware implements Middleware
 
     public function handle(callable $next): void
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        if (!isset($_SESSION["user"])) {
-            http_response_code(401);
-            header("location: /login");
+        if (!isset($_SESSION["user_id"])) {
+            header("Location: /login");
             exit();
         }
 

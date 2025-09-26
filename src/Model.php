@@ -6,8 +6,13 @@ use PDO;
 
 abstract class Model
 {
-    protected static string $table;
+    protected static string $table = "";
     protected ?int $id = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function __construct(
         private PDO $pdo
@@ -36,8 +41,7 @@ abstract class Model
         if ($this->id === null) {
             $sql = "INSERT INTO $table ($joined_columns) VALUES ($joined_values)";
 
-            $stmt = $this->pdo->prepare($sql);
-            $ok = $stmt->execute($values);
+            $ok = $this->pdo->prepare($sql)->execute($values);
 
             if ($ok) {
                 $this->id = (int) $this->pdo->lastInsertId();
@@ -51,8 +55,7 @@ abstract class Model
 
         $sql = "UPDATE $table SET $set WHERE id = :id";
 
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute($values);
+        return $this->pdo->prepare($sql)->execute($values);
     }
 
     public static function find(PDO $pdo, int $id): ?static
@@ -94,7 +97,7 @@ abstract class Model
         return $stmt->execute([":id" => $this->id]);
     }
 
-    private static function map($row, $pdo): static
+    protected static function map($row, $pdo): static
     {
         $model = new static($pdo);
         foreach ($row as $key => $value) {

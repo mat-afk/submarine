@@ -1,6 +1,12 @@
 <?php
 $pageTitle = "Login";
 
+$errors = [
+    "INVALID_EMAIL" => $errors["INVALID_EMAIL"] ?? false,
+    "PASSWORD_REQUIRED" => $errors["PASSWORD_REQUIRED"] ?? false,
+    "BAD_CREDENTIALS" => $errors["BAD_CREDENTIALS"] ?? false,
+];
+
 include __DIR__ . "/../Layout/auth-form.php";
 ?>
 
@@ -17,7 +23,7 @@ include __DIR__ . "/../Layout/auth-form.php";
 
 <h3 class="title is-3 has-text-centered mb-5">Login</h3>
 
-<form action="#" method="POST">
+<form action="/login" method="POST">
     <div class="field">
         <label for="email" class="label">E-mail</label>
         <div class="control has-icons-left">
@@ -25,6 +31,10 @@ include __DIR__ . "/../Layout/auth-form.php";
             <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
             </span>
+
+            <?php if ($errors["INVALID_EMAIL"]): ?>
+                <p class="help is-danger">Endereço de e-mail inválido.</p>
+            <?php endif ?>
         </div>
     </div>
 
@@ -35,8 +45,16 @@ include __DIR__ . "/../Layout/auth-form.php";
             <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
             </span>
+
+            <?php if ($errors["PASSWORD_REQUIRED"]): ?>
+                <p class="help is-danger">A senha é necessária para realizar a autenticação.</p>
+            <?php endif ?>
         </div>
     </div>
+
+    <?php if ($errors["BAD_CREDENTIALS"]): ?>
+        <p class="has-text-danger has-text-centered py-3">Credenciais inválidas. Verifique se o e-mail e a senha estão corretos.</p>
+    <?php endif ?>
 
     <div class="field">
         <div class="control">
@@ -44,3 +62,6 @@ include __DIR__ . "/../Layout/auth-form.php";
         </div>
     </div>
 </form>
+
+<?php
+$errors = [];
