@@ -27,6 +27,8 @@ class Database
             PDO::ATTR_EMULATE_PREPARES   => false
         ];
 
-        return new PDO($dsn, $user, $password, $options);
+        static::$connection = new PDO($dsn, $user, $password, $options);
+
+        return static::$connection;
     }
 }
