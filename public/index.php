@@ -1,10 +1,10 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 require __DIR__ . "/../src/autoload.php";
-
-use App\Database;
 
 use App\Controller\AuthController;
 use App\Controller\BookController;
@@ -15,18 +15,15 @@ use App\Controller\RatingController;
 use App\Middleware\AuthMiddleware;
 use App\Router;
 
-$authController = new AuthController();
-$authMiddleware = new AuthMiddleware();
+Router::get("/", AuthController::class, "index");
+Router::route("/login", AuthController::class, "login");
+Router::route("/register", AuthController::class, "register");
 
-Router::get("/", $authController, "index");
-Router::route("/login", $authController, "login");
-Router::route("/register", $authController, "register");
-
-Router::group([$authMiddleware], function () {
-    Router::resource("/books", new BookController());
-    Router::resource("/categories", new CategoryController());
-    Router::resource("/authors", new AuthorController());
-    Router::resource("/ratings", new RatingController());
+Router::group([AuthMiddleware::class], function () {
+    Router::resource("/books", BookController::class);
+    Router::resource("/categories", CategoryController::class);
+    Router::resource("/authors", AuthorController::class);
+    Router::resource("/ratings", RatingController::class);
 });
 
 Router::dispatch($_SERVER["REQUEST_METHOD"], $_SERVER["REQUEST_URI"]);
