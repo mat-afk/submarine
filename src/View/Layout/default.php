@@ -10,7 +10,7 @@ include __DIR__ . "/header.php";
                     <div class="navbar-brand">
                         <a class="navbar-item has-text-white has-text-weight-bold is-size-4" href="/books">
                             <figure class="image is-64x64 mr-3">
-                                <img src="/favicon.png" style="min-width: 64px; min-height: 64px;" alt="Logo" />
+                                <img src="/favicon.png" style="min-width: 100%; min-height: 100%;" alt="Logo" />
                             </figure>
                             <span>Submarine</span>
                         </a>
@@ -34,5 +34,5 @@ include __DIR__ . "/header.php";
                     </div>
                 </nav>
 
-                <div class="py-5">
+                <div class="p-5">
                     <div class="container">
