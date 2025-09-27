@@ -1,7 +1,7 @@
 <?php
 $pageTitle = "O Guia do Mochileiro das Galáxias";
 
-include __DIR__ . "/../Layout/default.php";
+include __DIR__ . "/../../Layout/default.php";
 ?>
 
 <div class="level">
