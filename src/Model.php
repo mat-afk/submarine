@@ -14,15 +14,9 @@ abstract class Model
         return $this->id;
     }
 
-    public function __construct(
-        private PDO $pdo
-    ) {}
-
     public function save(): bool
     {
         $attributes = get_object_vars($this);
-
-        unset($attributes["pdo"]);
 
         $columns = [];
         $values = [];
@@ -38,13 +32,15 @@ abstract class Model
         $joined_values = implode(", ", array_keys($values));
         $table = static::$table;
 
+        $pdo = Database::getConnection();
+
         if ($this->id === null) {
             $sql = "INSERT INTO $table ($joined_columns) VALUES ($joined_values)";
 
-            $ok = $this->pdo->prepare($sql)->execute($values);
+            $ok = $pdo->prepare($sql)->execute($values);
 
             if ($ok) {
-                $this->id = (int) $this->pdo->lastInsertId();
+                $this->id = (int) $pdo->lastInsertId();
             }
 
             return $ok;
@@ -55,51 +51,72 @@ abstract class Model
 
         $sql = "UPDATE $table SET $set WHERE id = :id";
 
-        return $this->pdo->prepare($sql)->execute($values);
+        return $pdo->prepare($sql)->execute($values);
     }
 
-    public static function find(PDO $pdo, int $id): ?static
+    public static function find(array $conditions = []): ?static
     {
-        $table = static::$table;
-        $sql = "SELECT * FROM $table WHERE id = :id LIMIT 1";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([":id" => $id]);
-
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (!$row) return null;
-
-        return static::map($row, $pdo);
+        return static::where($conditions, 1);
     }
 
-    public static function all(PDO $pdo): array
+    public static function all(array $conditions = []): array
     {
-        $table = static::$table;
-        $sql = "SELECT * FROM $table";
-
-        $stmt = $pdo->query($sql);
-        $results = [];
-
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $results[] = static::map($row, $pdo);
-        }
-
-        return $results;
+        return static::where($conditions);
     }
 
     public function delete(): bool
     {
         if ($this->id === null) return false;
 
-        $table = static::$table;
-        $stmt = $this->pdo->prepare("DELETE FROM $table WHERE id = :id");
+        $pdo = Database::getConnection();
 
-        return $stmt->execute([":id" => $this->id]);
+        $table = static::$table;
+
+        return $pdo
+            ->prepare("DELETE FROM $table WHERE id = :id")
+            ->execute([":id" => $this->id]);
     }
 
-    protected static function map($row, $pdo): static
+    public static function where(array $conditions = [], int $limit = -1): static|array|null
     {
-        $model = new static($pdo);
+        $table = static::$table;
+
+        $sql = "SELECT * FROM $table";
+        $params = [];
+
+        if (!empty($conditions)) {
+            $clauses = [];
+            foreach ($conditions as $column => $value) {
+                $clauses[] = "$column = :$column";
+                $params[":$column"] = $value;
+            }
+            $sql .= " WHERE " . implode(" AND ", $clauses);
+        }
+
+        if ($limit !== -1) {
+            $sql .= " LIMIT $limit";
+        }
+
+        $pdo = Database::getConnection();
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+
+        $results = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $results[] = static::map($row);
+        }
+
+        if ($limit === 1) {
+            return $results[0] ?? null;
+        }
+
+        return $results;
+    }
+
+    protected static function map($row): static
+    {
+        $model = new static();
         foreach ($row as $key => $value) {
             $model->$key = $value;
         }

@@ -17,8 +17,7 @@ class AuthController extends Controller
             $location = "/login";
         }
 
-        header("location: $location");
-        exit();
+        $this->redirectTo($location);
     }
 
     public function login(): void
@@ -44,7 +43,7 @@ class AuthController extends Controller
                 return;
             }
 
-            $user = User::findByEmail($this->pdo, $email);
+            $user = User::find(["email" => $email]);
 
             if (!$user || !$user->passwordMatches($password)) {
                 View::render("login", ["errors" => [
@@ -55,8 +54,7 @@ class AuthController extends Controller
 
             $_SESSION["user_id"] = $user->getId();
 
-            header("Location: /books");
-            exit();
+            $this->redirectTo("/books");
         }
 
         View::render("login");
@@ -85,7 +83,7 @@ class AuthController extends Controller
                 $errors["WEAK_PASSWORD"] = true;
             }
 
-            $user = User::findByEmail($this->pdo, $email);
+            $user = User::find(["email" => $email]);
 
             if ($user) {
                 $errors["BAD_CREDENTIALS"] = true;
@@ -105,17 +103,18 @@ class AuthController extends Controller
                 return;
             }
 
-            $user = new User($this->pdo);
+            $user = new User();
             $user->setName($name);
             $user->setEmail($email);
             $user->setPassword($password);
 
             $ok = $user->save();
 
-            if ($ok) {
-                header("location: /login");
-                exit();
+            if (!$ok) {
+                return;
             }
+
+            $this->redirectTo("/books");
         }
 
         View::render("register");

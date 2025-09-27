@@ -6,5 +6,9 @@ use PDO;
 
 abstract class Controller
 {
-    public function __construct(protected PDO $pdo) {}
+    protected function redirectTo(string $path): void
+    {
+        header("Location: $path");
+        exit();
+    }
 }

@@ -6,10 +6,19 @@ use PDO;
 
 class Database
 {
-    private PDO $pdo;
+    private static ?PDO $connection = null;
 
-    public function __construct(string $host, string $db, string $user, string $password)
+    public static function getConnection(): PDO
     {
+        if (static::$connection) {
+            return static::$connection;
+        }
+
+        $host = getenv("DB_HOST") ?: "db";
+        $db = getenv("DB_NAME") ?: "submarine";
+        $user = getenv("DB_USER") ?: "mysql";
+        $password = getenv("DB_PASSWORD") ?: "mysql";
+
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 
         $options = [
@@ -18,11 +27,6 @@ class Database
             PDO::ATTR_EMULATE_PREPARES   => false
         ];
 
-        $this->pdo = new PDO($dsn, $user, $password, $options);
-    }
-
-    public function getConnection(): PDO
-    {
-        return $this->pdo;
+        return new PDO($dsn, $user, $password, $options);
     }
 }

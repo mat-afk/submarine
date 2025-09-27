@@ -14,9 +14,4 @@ abstract class CrudController extends Controller
     abstract public function edit(): void;
     abstract public function delete(): void;
 
-    protected function redirectTo(string $path): void
-    {
-        header("Location: $path");
-        exit();
-    }
 }
