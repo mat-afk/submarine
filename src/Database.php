@@ -15,7 +15,7 @@ class Database
         }
 
         $host = getenv("MYSQL_HOST") ?: "db";
-        $db = getenv("MYSQL_NAME") ?: "submarine";
+        $db = getenv("MYSQL_DATABASE") ?: "submarine";
         $user = getenv("MYSQL_USER") ?: "mysql";
         $password = getenv("MYSQL_PASSWORD") ?: "mysql";
 
