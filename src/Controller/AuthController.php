@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $location = "/books";
 
-        if (!isset($_SESSION["user"])) {
+        if (!isset($_SESSION["user_id"])) {
             $location = "/login";
         }
 
@@ -90,7 +90,8 @@ class AuthController extends Controller
             }
 
             if (count($errors) !== 0) {
-                View::render("register",
+                View::render(
+                    "register",
                     [
                         "errors" => $errors,
                         "state" => [

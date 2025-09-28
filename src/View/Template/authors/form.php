@@ -2,13 +2,15 @@
 $baseUrl = "/authors";
 
 $form = [
-    "name" => isset($state) ? $state["name"] : ""
+    "name" => isset($state) ? $state->getName() : ""
 ];
+
+$action = isset($state) ? "/authors/edit?id={$state->getId()}" : "/authors/new";
 
 include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
-<form action="#" method="POST">
+<form action="<?php echo $action ?>" method="POST">
     <div class="field">
         <label for="name" class="label">Nome</label>
         <div class="control">

@@ -1,32 +1,27 @@
 <?php
 $baseUrl = "/ratings";
 
-$books = [
-    [
-      "id" => 1,
-      "title" => "O Guia do Mochileiro das Galáxias"
-    ]
-];
+$books = isset($books) ? $books : [];
 
 $form = [
-    "book" => isset($state) ? $state["book"] : "",
-    "stars" => isset($state) ? $state["stars"] : "",
-    "comment" => isset($state) ? $state["comment"] : "",
+    "book_id" => isset($state) ? $state->getBookId() : 0,
+    "stars" => isset($state) ? $state->getStars() : "",
+    "comment" => isset($state) ? $state->getComment() : "",
 ];
+
+$action = isset($state) ? "/ratings/edit?id={$state->getId()}" : "/ratings/new";
 
 include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
-<form action="#" method="POST">
+<form action="<?= $action ?>" method="POST">
     <div class="field">
-        <label for="book" class="label">Livro</label>
+        <label for="book_id" class="label">Livro</label>
         <div class="control">
             <div class="select is-fullwidth">
-                <select name="book" id="book">
+                <select name="book_id" id="book_id">
                     <?php foreach ($books as $book) { ?>
-                        <option <?php echo $form['book'] === $book['id'] ? 'selected' : '' ?>>
-                            <?php echo $book["title"] ?>
-                        </option>
+                        <option <?= $form['book_id'] === $book->getId() ? 'selected' : '' ?> value="<?= $book->getId() ?>"><?= $book->getTitle() ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -36,7 +31,7 @@ include __DIR__ . "/../../Layout/common-form.php";
     <div class="field">
         <label for="stars" class="label">Estrelas</label>
         <div class="control">
-            <input type="number" class="input" id="stars" name="stars" min="1" max="5" step="0.5" value="<?php echo $form['stars']; ?>" required>
+            <input type="number" class="input" id="stars" name="stars" min="1" max="5" step="1" value="<?= $form['stars'] ?>" required>
         </div>
         <p class="help">Avalie de 1 a 5 estrelas</p>
     </div>
@@ -44,9 +39,7 @@ include __DIR__ . "/../../Layout/common-form.php";
     <div class="field">
         <label for="comment" class="label">Comentário</label>
         <div class="control">
-            <textarea class="textarea" id="comment" name="comment" rows="4" placeholder="Deixe seu comentário sobre o livro...">
-                <?php echo $form["comment"]; ?>
-            </textarea>
+            <textarea class="textarea" id="comment" name="comment" rows="4" placeholder="Deixe seu comentário sobre o livro..."><?= $form["comment"] ?></textarea>
         </div>
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Author;
 use App\View;
 
 class AuthorController extends CrudController
@@ -10,7 +11,9 @@ class AuthorController extends CrudController
 
     public function index(): void
     {
-        View::render("$this->resource/index");
+        $authors = Author::all();
+
+        View::render("$this->resource/index", ["authors" => $authors]);
     }
 
     public function show(): void
@@ -23,6 +26,13 @@ class AuthorController extends CrudController
         $method = $_SERVER["REQUEST_METHOD"];
 
         if ($method === "POST") {
+            $name = $_POST["name"];
+
+            $author = new Author();
+            $author->setName($name);
+
+            $author->save();
+
             $this->redirect();
         }
 
@@ -33,17 +43,28 @@ class AuthorController extends CrudController
     {
         $method = $_SERVER["REQUEST_METHOD"];
         $id = $_REQUEST["id"];
+        $author = Author::find(["id" => $id]);
 
         if ($method === "POST") {
+            $name = $_POST["name"];
+
+            $author->setName($name);
+            $author->save();
+
             $this->redirect();
         }
 
-        View::render("$this->resource/edit");
+        View::render("$this->resource/edit", ["state" => $author]);
     }
 
     public function delete(): void
     {
         $id = $_REQUEST["id"];
+        $author = Author::find(["id" => $id]);
+
+        if (!$author) return;
+
+        $author->delete();
 
         $this->redirect();
     }

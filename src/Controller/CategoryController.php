@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\Category;
 use App\View;
 
 class CategoryController extends CrudController
@@ -10,7 +11,9 @@ class CategoryController extends CrudController
 
     public function index(): void
     {
-        View::render("$this->resource/index");
+        $categories = Category::all();
+
+        View::render("$this->resource/index", ["categories" => $categories]);
     }
 
     public function show(): void
@@ -23,6 +26,12 @@ class CategoryController extends CrudController
         $method = $_SERVER["REQUEST_METHOD"];
 
         if ($method === "POST") {
+            $name = $_POST["name"];
+
+            $category = new Category();
+            $category->setName($name);
+            $category->save();
+
             $this->redirect();
         }
 
@@ -33,17 +42,28 @@ class CategoryController extends CrudController
     {
         $method = $_SERVER["REQUEST_METHOD"];
         $id = $_REQUEST["id"];
+        $category = Category::find(["id" => $id]);
 
         if ($method === "POST") {
+            $name = $_POST["name"];
+
+            $category->setName($name);
+            $category->save();
+
             $this->redirect();
         }
 
-        View::render("$this->resource/edit");
+        View::render("$this->resource/edit", ["state" => $category]);
     }
 
     public function delete(): void
     {
         $id = $_REQUEST["id"];
+        $category = Category::find(["id" => $id]);
+
+        if (!$category) return;
+
+        $category->delete();
 
         $this->redirect();
     }

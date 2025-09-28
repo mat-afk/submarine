@@ -2,13 +2,15 @@
 $baseUrl = "/categories";
 
 $form = [
-    "name" => isset($state) ? $state["name"] : ""
+    "name" => isset($state) ? $state->getName() : ""
 ];
+
+$action = isset($state) ? "/categories/edit?id={$state->getId()}" : "/categories/new";
 
 include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
-<form action="#" method="POST">
+<form action="<?php echo $action ?>" method="POST">
     <div class="field">
         <label for="name" class="label">Nome</label>
         <div class="control">

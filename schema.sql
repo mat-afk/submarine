@@ -15,30 +15,16 @@ CREATE TABLE IF NOT EXISTS categories(
     name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS images(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    size INT NOT NULL,
-    content BLOB NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS books(
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     description VARCHAR(255),
-    published_at DATE DEFAULT (CURRENT_DATE())
-    cover_id INTEGER NOT NULL,
-
-    FOREIGN KEY (cover_id) REFERENCES images(id);
-);
-
-CREATE TABLE IF NOT EXISTS authorship(
-    id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    book_id INTEGER NOT NULL,
+    published_at DATE DEFAULT (CURRENT_DATE()),
+    category_id INTEGER NOT NULL,
     author_id INTEGER NOT NULL,
 
-    FOREIGN KEY (book_id) REFERENCES books(id),
-    FOREIGN KEY (author_id) REFERENCES authors(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE,
+    FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ratings(
@@ -48,8 +34,8 @@ CREATE TABLE IF NOT EXISTS ratings(
     stars INTEGER NOT NULL,
     comment VARCHAR(255),
 
-    FOREIGN KEY (book_id) REFERENCES books(id),
-    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
 
     CHECK(stars >= 1 AND stars <= 5)
 );

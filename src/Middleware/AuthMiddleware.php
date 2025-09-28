@@ -3,6 +3,7 @@
 namespace App\Middleware;
 
 use App\Middleware;
+use App\Model\User;
 
 class AuthMiddleware implements Middleware
 {
@@ -14,10 +15,23 @@ class AuthMiddleware implements Middleware
         }
 
         if (!isset($_SESSION["user_id"])) {
-            header("Location: /login");
-            exit();
+            $this->redirectToLogin();
+        }
+
+        $id = $_SESSION["user_id"];
+
+        $user = User::find(["id" => $id]);
+
+        if (!$user) {
+            $this->redirectToLogin();
         }
 
         $next();
+    }
+
+    private function redirectToLogin()
+    {
+        header("Location: /login");
+        exit();
     }
 }

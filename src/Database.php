@@ -14,10 +14,10 @@ class Database
             return static::$connection;
         }
 
-        $host = getenv("DB_HOST") ?: "db";
-        $db = getenv("DB_NAME") ?: "submarine";
-        $user = getenv("DB_USER") ?: "mysql";
-        $password = getenv("DB_PASSWORD") ?: "mysql";
+        $host = getenv("MYSQL_HOST") ?: "db";
+        $db = getenv("MYSQL_NAME") ?: "submarine";
+        $user = getenv("MYSQL_USER") ?: "mysql";
+        $password = getenv("MYSQL_PASSWORD") ?: "mysql";
 
         $dsn = "mysql:host=$host;dbname=$db;charset=utf8";
 

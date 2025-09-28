@@ -1,64 +1,45 @@
 <?php
 $baseUrl = "/books";
 
-$authors = [
-    [
-      "id" => 1,
-      "name" => "Giuliano da Empoli"
-    ],
-    [
-        "id" => 2,
-        "name" => "Zygmunt Bauman"
-    ]
-];
-
-$categories = [
-    [
-        "id" => 1,
-        "name" => "Fantasia"
-    ],
-    [
-        "id" => 2,
-        "name" => "Ficção científica"
-    ]
-];
+$authors = isset($authors) ? $authors : [];
+$categories = isset($categories) ? $categories : [];
 
 $form = [
-    "title" => isset($state) ? $state["title"] : "",
-    "description" => isset($state) ? $state["description"] : "",
-    "author" => isset($state) ? $state["author"] : 0,
-    "category" => isset($state) ? $state["category"] : 0,
-    "publish_date" => isset($state) ? $state["publish_date"] : date("Y-m-d"),
+    "title" => isset($state) ? $state->getTitle() : "",
+    "description" => isset($state) ? $state->getDescription() : "",
+    "author_id" => isset($state) ? $state->getAuthorId() : 0,
+    "category_id" => isset($state) ? $state->getCategoryId() : 0,
+    "published_at" => isset($state) ? $state->getPublishedAt() : date("Y-m-d"),
 ];
+
+$action = isset($state) ? "/books/edit?id={$state->getId()}" : "/books/new";
 
 include __DIR__ . "/../../Layout/common-form.php";
 ?>
 
-<form action="#" method="POST">
+<form action="<?= $action ?>" method="POST">
     <div class="field">
         <label for="title" class="label">Título</label>
         <div class="control">
-            <input type="text" class="input" id="title" name="title" value="<?php echo $form['title'] ?>" required>
+            <input type="text" class="input" id="title" name="title" value="<?= $form['title'] ?>" required>
         </div>
     </div>
 
     <div class="field">
         <label for="description" class="label">Descrição</label>
         <div class="control">
-            <textarea class="textarea" id="description" name="description" rows="4">
-                <?php echo $form["description"] ?>
-            </textarea>
+            <textarea class="textarea" id="description" name="description" rows="4"><?= $form["description"] ?></textarea>
         </div>
     </div>
 
     <div class="field">
-        <label for="author" class="label">Autor</label>
+        <label for="author_id" class="label">Autor</label>
         <div class="control">
             <div class="select is-fullwidth">
-                <select name="author" id="author">
+                <select name="author_id" id="author_id">
                     <?php foreach ($authors as $author) { ?>
-                        <option <?php echo $form['author'] === $author['id'] ? 'selected' : '' ?>>
-                            <?php echo $author["name"] ?>
+                        <option <?= $form['author_id'] === $author->getId() ? 'selected' : '' ?> value="<?= $author->getId() ?>">
+                            <?= $author->getName() ?>
                         </option>
                     <?php } ?>
                 </select>
@@ -67,13 +48,13 @@ include __DIR__ . "/../../Layout/common-form.php";
     </div>
 
     <div class="field">
-        <label for="category" class="label">Categoria</label>
+        <label for="category_id" class="label">Categoria</label>
         <div class="control">
             <div class="select is-fullwidth">
-                <select name="category" id="category">
+                <select name="category_id" id="category_id">
                     <?php foreach ($categories as $category) { ?>
-                        <option <?php echo $form['category'] === $category['id'] ? 'selected' : '' ?>>
-                            <?php echo $category["name"] ?>
+                        <option <?= $form['category_id'] === $category->getId() ? 'selected' : '' ?> value="<?= $category->getId() ?>">
+                            <?= $category->getName(); ?>
                         </option>
                     <?php } ?>
                 </select>
@@ -81,10 +62,10 @@ include __DIR__ . "/../../Layout/common-form.php";
         </div>
     </div>
 
-    <div class="field">
-        <label for="publish_date" class="label">Data de Publicação</label>
+    <div class=" field">
+        <label for="published_at" class="label">Data de Publicação</label>
         <div class="control">
-            <input type="date" class="input" id="publish_date" name="publish_date" value="<?php echo $form['publish_date'] ?>" required>
+            <input type="date" class="input" id="published_at" name="published_at" value="<?= $form['published_at'] ?>" required>
         </div>
     </div>
 

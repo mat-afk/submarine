@@ -8,9 +8,9 @@ class Image extends Model
 {
     protected static string $table = 'images';
 
-    private string $name;
-    private int $size;
-    private string $content;
+    protected string $name;
+    protected int $size;
+    protected string $content;
 
     public function getName(): string
     {

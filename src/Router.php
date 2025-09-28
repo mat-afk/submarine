@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Controller\CrudController;
-
 class Router
 {
     private static array $routes = [];
