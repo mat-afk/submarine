@@ -10,6 +10,10 @@ A Submarine é um projeto de gerenciamento de livros para a disciplina de Aplica
 - Mateus Cruzatto Ramos
 - Carlos Alberto Pereira Lustosa Junior
 
+## Deploy
+
+O deploy da aplicação e do banco de dados foi feito na plataforma Railway. Ela está acessível através do seguinte link: [https://submarine.up.railway.app](https://submarine.up.railway.app)
+
 ## Funcionalidades principais
 
 1. **Cadastro e login de usuários**
