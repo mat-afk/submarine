@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS categories(
 CREATE TABLE IF NOT EXISTS books(
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    description VARCHAR(255),
+    description TEXT,
     published_at DATE DEFAULT (CURRENT_DATE()),
     category_id INTEGER NOT NULL,
     author_id INTEGER NOT NULL,
