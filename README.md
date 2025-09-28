@@ -5,6 +5,11 @@ A Submarine é um projeto de gerenciamento de livros para a disciplina de Aplica
 ![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
+## Membros
+
+- Mateus Cruzatto Ramos
+- Carlos Alberto Pereira Lustosa Junior
+
 ## Funcionalidades principais
 
 1. **Cadastro e login de usuários**
