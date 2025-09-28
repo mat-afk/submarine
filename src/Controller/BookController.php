@@ -120,6 +120,7 @@ class BookController extends CrudController
         $description = $_POST["description"];
         $authorId = $_POST["author_id"];
         $categoryId = $_POST["category_id"];
+        $publishedAt = $_POST["published_at"];
 
         $category = Category::find(["id" => $categoryId]);
         if (!$category) return;
@@ -132,6 +133,7 @@ class BookController extends CrudController
         $book->setDescription($description);
         $book->setCategoryId($categoryId);
         $book->setAuthorId($authorId);
+        $book->setPublishedAt($publishedAt);
 
         $book->save();
     }
